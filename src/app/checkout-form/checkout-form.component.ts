@@ -25,7 +25,7 @@ export class CheckoutFormComponent {
     ])),
     address: new FormControl('', Validators.compose([
       Validators.required,
-      Validators.minLength(10)
+      Validators.maxLength(250)
     ]))
   })
 
@@ -44,7 +44,7 @@ export class CheckoutFormComponent {
     },
     address: {
       required: 'Address is required.',
-      minlength: 'Address minimum length is 10.'
+      maxlength: 'Address maximum length is 250.'
     }
   }
 

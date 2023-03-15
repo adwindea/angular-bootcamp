@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from 'src/services/cart.service';
+import { Router } from '@angular/router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -14,7 +15,7 @@ export class CheckoutComponent {
   totalItem: number = 0
   totalPrice: number = 0
 
-  constructor(private cartService: CartService) {}
+  constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit() {
     this.getCart()
@@ -31,7 +32,8 @@ export class CheckoutComponent {
   }
 
   checkout(checkoutForm) {
-    if (this.cart.length > 1) {
+    console.log(this.cart.length)
+    if (this.cart.length > 0) {
       checkoutForm.product = this.cart.reduce((acc, curr) => {
         acc.push({ name: curr.name, price: curr.price, quantity: curr.quantity });
         return acc;
@@ -44,6 +46,8 @@ export class CheckoutComponent {
           showConfirmButton: false,
           timer: 1000
         })
+        this.cartService.setData([])
+        this.router.navigate([''])
       }).catch(err => console.log(err))
 
     } else {
