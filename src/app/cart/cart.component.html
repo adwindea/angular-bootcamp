@@ -1,0 +1,82 @@
+<link
+	href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+	rel="stylesheet">
+<div class="shadow-card flex flex-col rounded-xl bg-white bg-clip-border">
+  <div class="text-secondary flex-1 p-6">
+    <h5 *ngIf="cart.length < 1" class="block text-center font-sans text-lg font-normal leading-snug tracking-normal text-blue-gray-900 antialiased">
+      Your cart is empty
+    </h5>
+    <table *ngIf="cart.length > 0" class="table border-separate space-y-6 text-sm w-full">
+      <thead class="bg-pink-500 text-gray-100">
+        <tr>
+          <th class="p-3">#</th>
+          <th class="p-3 text-left">Image</th>
+          <th class="p-3 text-left">Product Name</th>
+          <th class="p-3 text-right">Price</th>
+          <th class="p-3 text-center">Qty</th>
+          <th class="p-3 text-right">Total</th>
+          <th class="p-3 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody class="bg-gray-100">
+        <tr *ngFor="let c of cart; let i = index">
+          <td class="p-3 text-center">{{i+1}}</td>
+          <td class="p-3">
+            <div class="flex align-items-center">
+              <img [src]="c.image" class="h-24 w-24 rounded-lg object-cover">
+            </div>
+          </td>
+          <td class="p-3">{{c.name}}</td>
+          <td class="p-3 text-right">{{c.price | currency:"Rp "}}</td>
+          <td class="p-3 text-center">
+            <span *ngIf="editedProduct != c.id">{{c.quantity}}</span>
+            <div *ngIf="editedProduct == c.id" class="relative h-10 w-full max-w-[64px]">
+              <input
+                type="number"
+                min="0"
+                [(ngModel)]="c.quantity"
+                class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-300 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+                placeholder=" "
+              />
+              <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-300 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-300 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-300 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                Quantity
+              </label>
+            </div>
+          </td>
+          <td class="p-3 text-right">{{c.price*c.quantity | currency:"Rp "}}</td>
+          <td class="p-3 text-center">
+            <button
+              *ngIf="editedProduct != c.id"
+              class="inline rounded-lg bg-yellow-700 py-2 px-2 mx-0.5 font-sans text-xs font-bold text-white shadow-md shadow-yellow-700/20 transition-all hover:shadow-lg hover:shadow-yellow-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true"
+              (click)="setEditing(c.id)"
+            >
+              <i class="material-icons-outlined text-base">edit</i>
+            </button>
+            <button
+              *ngIf="editedProduct == c.id"
+              class="inline rounded-lg bg-blue-300 py-2 px-2 mx-0.5 font-sans text-xs font-bold text-white shadow-md shadow-blue-300/20 transition-all hover:shadow-lg hover:shadow-blue-300/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true"
+              (click)="saveCart(c)"
+            >
+              <i class="material-icons-outlined text-base">save</i>
+            </button>
+            <button
+              class="inline rounded-lg bg-red-500 py-2 px-2 mx-0.5 font-sans text-xs font-bold text-white shadow-md shadow-red-700/20 transition-all hover:shadow-lg hover:shadow-red-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true"
+              (click)="deleteCart(c.id)"
+            >
+              <i class="material-icons-round text-base">delete_outline</i>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th class="p-3 text-right" colspan="4">TOTAL</th>
+          <th class="p-3 text-center">{{totalItem}}</th>
+          <th class="p-3 text-right">{{totalPrice | currency:"Rp "}}</th>
+          <th class="p-3"></th>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="cart.length > 0">
+      <button class="flex ml-auto rounded-lg bg-pink-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true" routerLink="/checkout">Checkout</button>
+    </div>
+  </div>
+</div>

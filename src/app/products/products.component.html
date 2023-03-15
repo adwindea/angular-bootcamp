@@ -1,0 +1,13 @@
+<div class="grid grid-cols-4 gap-4">
+  <div>
+    <app-categories (activeCategoryEvent)="setActiveCategory($event)" [productsCount]="productsCount"></app-categories>
+  </div>
+  <div class="col-span-3">
+    <div class="grid grid-cols-3 gap-4 xl:grid-cols-4 xl:gap-2">
+      <app-product-card
+        *ngFor="let product of products"
+        [product]="product"
+      ></app-product-card>
+    </div>
+  </div>
+</div>

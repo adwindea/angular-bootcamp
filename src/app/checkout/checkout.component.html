@@ -1,0 +1,41 @@
+<div class="grid grid-cols-1 lg:grid-cols-5 lg:gap-4">
+  <div class="lg:col-span-3 mb-2">
+    <app-checkout-form (checkoutEvent)="checkout($event)"></app-checkout-form>
+  </div>
+  <div class="lg:col-span-2 mb-2">
+    <div class="shadow-card flex flex-col rounded-xl bg-white bg-clip-border">
+      <div class="text-secondary flex-1 p-6">
+        <h5 class="block font-sans text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+          Order Summary
+        </h5>
+        <h5 *ngIf="cart.length < 1" class="block text-center mt-3 font-sans text-sm font-normal leading-snug tracking-normal text-blue-gray-900 antialiased">
+          Your cart is empty
+        </h5>
+        <table *ngIf="cart.length > 0" class="table border-separate space-y-6 text-sm w-full">
+          <thead class="bg-pink-500 text-gray-100">
+            <tr>
+              <th class="p-3">#</th>
+              <th class="p-3 text-left">Product</th>
+              <th class="p-3 text-center">Qty</th>
+              <th class="p-3 text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody class="bg-gray-100">
+            <tr *ngFor="let c of cart; let i = index">
+              <td class="p-3 text-center">{{i+1}}</td>
+              <td class="p-3">{{c.name}}</td>
+              <td class="p-3 text-center">{{c.quantity}}</td>
+              <td class="p-3 text-right">{{c.quantity*c.price | currency:" "}}</td>
+            </tr>
+            <tr>
+              <th class="p-3 text-right" colspan="2">TOTAL</th>
+              <th class="p-3 text-center">{{totalItem}}</th>
+              <th class="p-3 text-right">{{totalPrice | currency:" "}}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

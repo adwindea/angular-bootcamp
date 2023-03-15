@@ -1,0 +1,74 @@
+<div class="shadow-card flex flex-col rounded-xl bg-white bg-clip-border">
+  <div class="text-secondary flex-1 p-6">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <div class="relative my-4 h-10 w-full min-w-[200px]">
+        <input
+          [ngClass]="formErrors.name ? 'border-red-500 text-red-500 placeholder-shown:border-red-500 placeholder-shown:border-t-red-500' : 'border-blue-gray-200 text-blue-gray-700 placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200'"
+          formControlName="name"
+          (blur)="logValidationErrors(checkoutForm)"
+          class="peer h-full w-full rounded-[7px] border border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal  outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-pink-300 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          placeholder=" "
+        />
+        <label
+          [ngClass]="formErrors.name ? 'text-red-500 peer-placeholder-shown:text-red-500' : 'text-blue-gray-400 peer-placeholder-shown:text-blue-gray-500'"
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75]  peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-300 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-300 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-300 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+          Name
+        </label>
+      </div>
+      <p *ngIf="formErrors.name" class="block font-sans text-red-500 text-sm font-light leading-normal text-inherit antialiased">{{formErrors.name}}</p>
+      <div class="relative my-4 h-10 w-full min-w-[200px]">
+        <input
+          [ngClass]="formErrors.email ? 'border-red-500 text-red-500 placeholder-shown:border-red-500 placeholder-shown:border-t-red-500' : 'border-blue-gray-200 text-blue-gray-700 placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200'"
+          formControlName="email"
+          (blur)="logValidationErrors(checkoutForm)"
+          class="peer h-full w-full rounded-[7px] border border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal  outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-pink-300 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          placeholder=" "
+        />
+        <label
+          [ngClass]="formErrors.email ? 'text-red-500 peer-placeholder-shown:text-red-500' : 'text-blue-gray-400 peer-placeholder-shown:text-blue-gray-500'"
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75]  peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-300 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-300 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-300 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+          Email
+        </label>
+      </div>
+      <p *ngIf="formErrors.email" class="block font-sans text-red-500 text-sm font-light leading-normal text-inherit antialiased">{{formErrors.email}}</p>
+      <div class="relative my-4 h-10 w-full min-w-[200px]">
+        <input
+          [ngClass]="formErrors.phone ? 'border-red-500 text-red-500 placeholder-shown:border-red-500 placeholder-shown:border-t-red-500' : 'border-blue-gray-200 text-blue-gray-700 placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200'"
+          formControlName="phone"
+          (blur)="logValidationErrors(checkoutForm)"
+          class="peer h-full w-full rounded-[7px] border border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal  outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-pink-300 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+          placeholder=" "
+        />
+        <label
+          [ngClass]="formErrors.phone ? 'text-red-500 peer-placeholder-shown:text-red-500' : 'text-blue-gray-400 peer-placeholder-shown:text-blue-gray-500'"
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75]  peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-300 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-300 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-300 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+          Phone
+        </label>
+      </div>
+      <p *ngIf="formErrors.phone" class="block font-sans text-red-500 text-sm font-light leading-normal text-inherit antialiased">{{formErrors.phone}}</p>
+      <div class="relative my-2 w-full min-w-[200px]">
+        <textarea
+          [ngClass]="formErrors.address ? 'bg-red-500 text-red-500placeholder-shown:border-blue-gray-200 placeholder-shown:border-red-500 ' : 'border-blue-gray-500 text-blue-gray-700 placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 '"
+          formControlName="address"
+          (blur)="logValidationErrors(checkoutForm)"
+          class="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
+          placeholder=" "
+        ></textarea>
+        <label
+        [ngClass]="formErrors.address ? 'text-red-500 peer-placeholder-shown:text-red-500' : 'text-blue-gray-400 peer-placeholder-shown:text-blue-gray-500'"
+          class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+          Address
+        </label>
+      </div>
+      <p *ngIf="formErrors.address" class="block font-sans text-red-500 text-sm font-light leading-normal text-inherit antialiased">{{formErrors.address}}</p>
+      <button
+        type="submit"
+        [disabled]="!checkoutForm.valid"
+        class="flex ml-auto rounded-lg bg-pink-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        data-ripple-light="true"
+      >
+      Chekout
+      </button>
+    </form>
+  </div>
+</div>
