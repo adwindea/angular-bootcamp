@@ -1,8 +1,10 @@
+import { GlobalVariable } from './../global-variable';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/services/cart.service';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { Product } from 'src/models/product.model';
 
 @Component({
   selector: 'app-product-details',
@@ -10,8 +12,7 @@ import axios from 'axios';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-  apiUrl: string = 'http://localhost:3000/products'
-  product: any = {}
+  product: Product
   cart: any[] = []
 
   constructor(private route: ActivatedRoute, private cartService: CartService) {}
@@ -22,7 +23,7 @@ export class ProductDetailsComponent {
   }
 
   getProduct(id: number) {
-    axios.get(this.apiUrl+'?id='+id).then(res => {
+    axios.get(GlobalVariable.apiUrl+'products?id='+id).then(res => {
       this.product = res.data[0]
     })
   }

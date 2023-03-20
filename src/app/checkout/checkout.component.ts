@@ -3,6 +3,7 @@ import { CartService } from 'src/services/cart.service';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { GlobalVariable } from '../global-variable';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +11,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-  apiUrl: string = 'http://localhost:3000/orders'
   cart: any[] = []
   totalItem: number = 0
   totalPrice: number = 0
@@ -39,7 +39,7 @@ export class CheckoutComponent {
         return acc;
       }, []);
 
-      axios.post(this.apiUrl, checkoutForm).then(res => {
+      axios.post(GlobalVariable.apiUrl+'orders', checkoutForm).then(res => {
         Swal.fire({
           icon: 'success',
           title: 'Your order has been placed.',

@@ -144,6 +144,25 @@
         }
       ],
       "id": 5
+    },
+    {
+      "name": "ardana",
+      "email": "ardana@asdasdas",
+      "phone": "2664334534576",
+      "address": "asfasgasg",
+      "product": [
+        {
+          "name": "Sepatu Merah",
+          "price": 350000,
+          "quantity": 2
+        },
+        {
+          "name": "Sepatu Biru",
+          "price": 320500,
+          "quantity": 1
+        }
+      ],
+      "id": 6
     }
   ]
 }

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import axios from 'axios';
+import { Category } from 'src/models/category.model';
+import { GlobalVariable } from '../global-variable';
 
 @Component({
   selector: 'app-categories',
@@ -7,8 +9,7 @@ import axios from 'axios';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent {
-  apiUrl = 'http://localhost:3000/categories'
-  categories : any = []
+  categories: Category[]
   activeCategory = ''
 
   @Output() activeCategoryEvent = new EventEmitter<string>();
@@ -19,7 +20,7 @@ export class CategoriesComponent {
   }
 
   getCategories() {
-    axios.get(this.apiUrl).then(res => {
+    axios.get(GlobalVariable.apiUrl+'categories').then(res => {
       this.categories = res.data
     })
   }

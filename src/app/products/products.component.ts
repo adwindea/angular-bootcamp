@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
+import { Product } from 'src/models/product.model';
+import { GlobalVariable } from '../global-variable';
 
 @Component({
   selector: 'app-products',
@@ -7,8 +9,8 @@ import axios from 'axios';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  apiUrl: string = 'http://localhost:3000/products'
-  products = []
+  apiUrl: string = GlobalVariable.apiUrl+'products'
+  products: Product[] = []
   productsCount : number = 0
   activeCategory: string = ''
 

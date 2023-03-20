@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Product } from 'src/models/product.model';
 import { CartService } from 'src/services/cart.service';
 import Swal from 'sweetalert2';
 
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductCardComponent {
 
-  @Input() product : any
+  @Input() product : Product
 
   cart: any[] = []
 
